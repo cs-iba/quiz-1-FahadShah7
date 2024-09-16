@@ -14,13 +14,13 @@ void stableSelectionSort(vector<T>& a) {
 template <typename T>
 void selectionSort(vector<T>& a) {
      int n = a.size();
-        for (int i = 0; i < n; i++) {
-            int min = i;
-            for (int j = i+1; j < n; j++) {
-                if (a[j] < a[min]) min = j;
-            }
-            std::swap(a[i], a[min]);
+    for (int i = 0; i < n; i++) {
+        int min = i;
+        for (int j = i; j < n; j++) { 
+            if (a[j] < a[min]) min = j;
         }
+        swap(a[i], a[min]);
+    }
 }
 int main() {
     // Example usage with an array of pairs
