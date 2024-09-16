@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
 
 using namespace std;
 
@@ -7,20 +7,34 @@ using namespace std;
 // `pos` specifies the index to sort by if sorting a vector of pairs.
 template <typename T>
 void stableSelectionSort(vector<T>& a) {
-    
+    int n = a.size();
+    for (int i = 0; i < n; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) { 
+            if (a[j] < a[min]) min = j;
+        }
+        if(min != i)
+        {
+            T minelem = a[min];
+            for (int k = min; k > i; k--)
+            {
+                a[k] = a[k - 1];
+            }
+            a[i] = minelem;
+        }
+    }
 }
-
 // Unstable Selection Sort given in slides
 template <typename T>
 void selectionSort(vector<T>& a) {
      int n = a.size();
-    for (int i = 0; i < n; i++) {
-        int min = i;
-        for (int j = i; j < n; j++) { 
-            if (a[j] < a[min]) min = j;
+        for (int i = 0; i < n; i++) {
+            int min = i;
+            for (int j = i+1; j < n; j++) {
+                if (a[j] < a[min]) min = j;
+            }
+            std::swap(a[i], a[min]);
         }
-        swap(a[i], a[min]);
-    }
 }
 int main() {
     // Example usage with an array of pairs
